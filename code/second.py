@@ -1,42 +1,44 @@
-#! usr/bin/env python
+#! usr/bin/env Python
+
 import os
 import sys
 
-def findfile():
+def filefind():
     path = os.path.abspath('second.txt')
     thefile = open(path,'r')
     content = thefile.read()
     thefile.close()
     return content
 
-def count(thestr):
-    countor = {'string':'num'}
-    for i in thestr:
-        if i in countor.keys():
-            countor[i] +=1
+def count(str):
+    arry = []
+    thestr = []
+    for i in str:
+        if i in thestr:
+            n = thestr.index(i)
+            arry[n][1] += 1
         else:
-            countor[i] = 1
-    return countor
-def count2(thestr):
+            thestr.append(i)
+            arry.append([i,1])
+    return arry
 
-    pass
-def lesschar2(chardict):
-   # num = chardict[j] for j in chardict.keys()
-    pass
-def lesschar(chardict,content):
-    i = len(content)
-    for n in range(len(chardict)):
-        if i > n :
-            i = n
+def theless(arry):
+    j = len(arry)
+    endstr = []
+    for k in arry:
+        if j >= k[1]:
+            j = k[1]
         else:
             pass
-    print i
-    endstr = [n for n in chardict.keys() if chardict[n] == 1]
+    for i in arry:
+        if i[1] == j:
+            endstr.append(i[0])
+        else:
+            pass
     return endstr
 
-
 if __name__ == "__main__":
-    content = findfile()
-    chardict =  count(content)
-    result = lesschar(chardict,content)
+    content = filefind()
+    arry = count(content)
+    result = theless(arry)
     print ''.join(result)
