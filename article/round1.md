@@ -2,7 +2,10 @@
 ## describe
 ![alt text][stage_one_img]
 
-[stage_one_img]: /Users/jfliu/Documents/pythonChallenge/images/round_one
+[stage_one_img]: /Users/jfliu/Documents/pythonChallenge/images/round1
+
+
+URL http://www.pythonchallenge.com/pc/def/274877906944.html
 
 ```
 everybody thinks twice before solving this.
@@ -36,6 +39,6 @@ if __name__ == "__main__":
     print translation(start)
     
 输出：
-i hope you didnt translate it by hand. thats what aomputers are for. doing it in by hand is ineffiaient and that's why this text is so long. using string.maketrans() is reaommended. now apply on the url. 
+i hope you didnt translate it by hand. thats what computers are for. doing it in by hand is inefficient and that's why this text is so long. using string.maketrans() is recommended. now apply on the url. 
 ```
 I
