@@ -53,20 +53,13 @@ def countByArray(characters):
     return charArray
 
 
-#this function need to refactor
-def binarySortArray(charArray):
-    j = len(charArray)
+def getValueEqualOneArray(charArray):
     endstr = []
-    for k in charArray:
-        if j >= k[1]:
-            j = k[1]
-        else:
-            passengerType
-    for i in charArray:
-        if i[1] == j:
-            endstr.append(i[0])
-        else:
-            pass
+    for eachChar in charArray:
+      if eachChar[1] == 1:
+        endstr.append(eachChar[0])
+      else:
+        pass
     return endstr
 
 
@@ -74,9 +67,8 @@ if __name__ == "__main__":
     characters = readFile()
     characterAndNumberDic = countByDic(characters)
     charArrayAndNumberArray = countByArray(characters)
-    result = binarySortArray(charArrayAndNumberArray)
+    result = getValueEqualOneArray(charArrayAndNumberArray)
     print ''.join(result)
-
 
 输出：
 equality
