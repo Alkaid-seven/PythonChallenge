@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import os
-
 
 def readFile():
-    path = os.path.abspath('second.txt')
+    path = '../source/second.txt'
     fileContent = open(path, 'r').read()
     return fileContent
 
@@ -36,10 +34,10 @@ def countByArray(characters):
 def getValueEqualOneArray(charArray):
     endstr = []
     for eachChar in charArray:
-      if eachChar[1] == 1:
-        endstr.append(eachChar[0])
-      else:
-        pass
+        if eachChar[1] == 1:
+            endstr.append(eachChar[0])
+        else:
+            pass
     return endstr
 
 
