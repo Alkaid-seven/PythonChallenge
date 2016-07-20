@@ -2,7 +2,7 @@
 ## describe
 ![alt text][stage_one_img]
 
-[stage_one_img]: /Users/jfliu/Documents/pythonChallenge/images/round1
+[stage_one_img]: ../images/round1
 
 
 URL http://www.pythonchallenge.com/pc/def/274877906944.html

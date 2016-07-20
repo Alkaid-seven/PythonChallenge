@@ -3,7 +3,7 @@
 ## describe
 ![alt text][stage_one_img]
 
-[stage_one_img]: /Users/jfliu/Documents/pythonChallenge/images/round2
+[stage_one_img]: ../images/round2
 
 
 URL http://www.pythonchallenge.com/pc/def/ocr.html
