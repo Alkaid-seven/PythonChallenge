@@ -14,7 +14,7 @@ end. 400 times is more than enough.
 ```
 
 本关没有任何的文字提示，开一下source，能够看见以上字符.
-并且图片元素外层包裹了一个<a> 标签，有href属性，如下：
+并且图片元素外层包裹了一个 ```<a>``` 标签，有href属性，如下：
 
 ```
   <a href="linkedlist.php?nothing=12345">
@@ -32,12 +32,59 @@ and the next nothing is 45439
 Your hands are getting tired and the next nothing is 94485
 ```
 
-按照题意，应该是用urllib这个库，请求400次左右，到最后 nothing 的值会保持不变。
+按照题意，应该是用urllib这个库，请求400次左右，到最后会直接返回给你第五关的URL。
 所以关键在于 urllib 的使用。
 
 ## answer
 
 ```
+#!/usr/bin/env python
+# encoding: utf-8
+
+import urllib
+
+
+def getTheDataFromURL(url):
+    dataFromURL = urllib.urlopen(url).read()
+    return dataFromURL
+
+
+def joinTheNewURL(newID):
+    THE_BASE_URL = 'http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing='
+    theNewURL = THE_BASE_URL + str(newID)
+    return theNewURL
+
+
+def matchNewIDByRegex(newData):
+    wordList = newData.split(' ')
+    digitList = [word for word in wordList if word.isdigit()]
+    if len(digitList) > 0:
+        newID = digitList[0]
+    else:
+        newID = wordList[0]
+    return newID
+
+
+def try400Times():
+    initialID = 12345
+    for i in range(0, 400):
+        print '%d: %s' % (i, initialID)
+        newURL = joinTheNewURL(initialID)
+        newData = getTheDataFromURL(newURL)
+        if newData.startswith('Yes'):
+            initialID = str(int(initialID) / 2)
+            continue
+        initialID = matchNewIDByRegex(newData)
+        if not initialID.isdigit():
+            break
+    print initialID
+
+
+if __name__ == "__main__":
+    try400Times()
+
+输出：
+peak.html
 ```
 
 ## 题外话之：网络请求
