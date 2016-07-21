@@ -1,53 +1,44 @@
 #!/usr/bin/env python
-# encoding: utf-8 
+# encoding: utf-8
 
 import urllib
-import re
 
 
 def getTheDataFromURL(url):
-  dataFromURL = urllib.urlopen(url).read()
-  return dataFromURL
+    dataFromURL = urllib.urlopen(url).read()
+    return dataFromURL
 
 
 def joinTheNewURL(newID):
-  THE_BASE_URL = 'http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=' 
-  theNewURL = THE_BASE_URL + str(newID)
-  return theNewURL
+    THE_BASE_URL = 'http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing='
+    theNewURL = THE_BASE_URL + str(newID)
+    return theNewURL
 
 
 def matchNewIDByRegex(newData):
-  # 这样不make sense，应该有其他的更好的匹配规则
-  newIDlist = re.findall('\d{4,5}', newData)
-  print newIDlist
-  return newIDlist[0]
+    wordList = newData.split(' ')
+    digitList = [word for word in wordList if word.isdigit()]
+    if len(digitList) > 0:
+        newID = digitList[0]
+    else:
+        newID = wordList[0]
+    return newID
 
 
 def try400Times():
-  # need to refactor
-  initialIDList = [12345, 3875, 160]
-  initialID = 56828
-  allTheID = []
-  for i in range(0, 400):
-    print i
-    if initialID not in allTheID:
-      allTheID.append(initialID)
-      newURL = joinTheNewURL(initialID)
-      print newURL
-      newData = getTheDataFromURL(newURL)
-      print newData
-      initialID = matchNewIDByRegex(newData)
-      print initialID
-
-    else:
-      print initialID
-      print allTheID
-      theLocationOfID = allTheID.index(initialID)
-      initialID = allTheID[theLocationOfID+1]
-
-  print initialID
+    initialID = 12345
+    for i in range(0, 400):
+        print '%d: %s' % (i, initialID)
+        newURL = joinTheNewURL(initialID)
+        newData = getTheDataFromURL(newURL)
+        if newData.startswith('Yes'):
+            initialID = str(int(initialID) / 2)
+            continue
+        initialID = matchNewIDByRegex(newData)
+        if not initialID.isdigit():
+            break
+    print initialID
 
 
 if __name__ == "__main__":
-  try400Times()
-  print 'a'
+    try400Times()
