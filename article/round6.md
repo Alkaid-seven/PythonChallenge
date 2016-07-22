@@ -26,6 +26,11 @@ Python Challenge project. Any amount will be greatly appreciated.
 <!-- <-- zip -->
 ```
  感觉跟 zip 有关的样子。
+ 尝试将 URL 后面的 channel.html 换成 zip.html，出现一下的文字
+
+ ```
+ yes. find the zip.
+ ```
  尝试将 URL 后面的 .html 换成 .zip
  可以下载下来一个zip文件。解压之后全是txt文件，其中有一个是readme
 
