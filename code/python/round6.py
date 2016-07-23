@@ -31,17 +31,15 @@ def getCommentFromFile():
     while nextNumber.isdigit():
         (nextNumber, comment) = getNumberFromTxtFile(channelFile, nextNumber)
         theComment.append(comment)
-    return theComment
+    return (nextNumber, theComment)
 
 
 def getNumberFromTxtFile(channelFile, number):
     fileName = number + '.txt'
     fileContent = channelFile.read(fileName)
-    print fileName
-    print fileContent
     theCommentInFile = channelFile.getinfo(fileName).comment
     wordsList = fileContent.split(' ')
-    nextNumber = [number for number in wordsList if number.isdigit()]
+    nextNumber = [newNumber for newNumber in wordsList if newNumber.isdigit()]
     if len(nextNumber) == 1:
         return (nextNumber[0], theCommentInFile)
     else:
@@ -49,10 +47,8 @@ def getNumberFromTxtFile(channelFile, number):
 
 
 if __name__ == "__main__":
-#    import pdb;pdb.set_trace()
-#    theInfo= getDataFromZipFile()
-    result = getCommentFromFile()
-#    print printInfo()
-#    print theInfo
-    print ''.join(result)
+    (fileContent, comments) = getCommentFromFile()
+    print 'the answer for stage 6 \n'
+    print fileContent
+    print ''.join(comments)
     print "SUCCESS"

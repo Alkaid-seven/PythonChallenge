@@ -35,6 +35,55 @@ Python Challenge project. Any amount will be greatly appreciated.
  可以下载下来一个zip文件。解压之后全是txt文件，其中有一个是readme
 
 
+ ## answer
+
+ ```
+#!usr/bin/env python
+# encoding: utf-8
+
+import zipfile
+
+
+def getFileLikeObject():
+    filePath = '/Users/jfliu/Code/Python/PythonChallenge/source/channel.zip'
+    return zipfile.ZipFile(filePath, 'r')
+
+
+def printInfo():
+    channelFile = getFileLikeObject()
+    return channelFile.comment
+
+
+def getCommentFromFile():
+    theComment = []
+    channelFile = getFileLikeObject()
+    (nextNumber, comment) = getNumberFromTxtFile(channelFile, '90052')
+    theComment.append(comment)
+    while nextNumber.isdigit():
+        (nextNumber, comment) = getNumberFromTxtFile(channelFile, nextNumber)
+        theComment.append(comment)
+    return (nextNumber, theComment)
+
+
+def getNumberFromTxtFile(channelFile, number):
+    fileName = number + '.txt'
+    fileContent = channelFile.read(fileName)
+    theCommentInFile = channelFile.getinfo(fileName).comment
+    wordsList = fileContent.split(' ')
+    nextNumber = [newNumber for newNumber in wordsList if newNumber.isdigit()]
+    if len(nextNumber) == 1:
+        return (nextNumber[0], theCommentInFile)
+    else:
+        return (fileContent, theCommentInFile)
+
+
+if __name__ == "__main__":
+    (fileContent, comments) = getCommentFromFile()
+    print fileContent
+    print ''.join(comments)
+ ```
+
+
 ## 题外话之: 文件压缩
 
 ## 题外话之: zipfile 模块
