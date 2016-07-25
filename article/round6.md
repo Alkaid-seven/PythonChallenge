@@ -45,8 +45,9 @@ import zipfile
 
 
 def getFileLikeObject():
-    filePath = '/Users/jfliu/Code/Python/PythonChallenge/source/channel.zip'
-    return zipfile.ZipFile(filePath, 'r')
+    currentProjectPath = '/'.join(os.path.abspath('round6.py').split('/')[0:-3])
+    zipFilePath = currentProjectPath + '/source/channel.zip'
+    return zipfile.ZipFile(zipFilePath, 'r')
 
 
 def printInfo():
